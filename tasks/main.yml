@@ -1,0 +1,22 @@
+---
+# tasks file for koji-db
+
+- name: Main | Remove nodocs from yum.conf
+  lineinfile: dest=/etc/yum.conf state=absent regexp="^tsflags = "
+  tags:
+    - yum
+    - koji-package
+
+- name: Main | Install koji package with schema
+  yum: name=koji state=present
+  tags:
+    - yum
+    - koji-package
+
+- name: Main | Import koji schema file'
+  shell: "su postgres -c 'psql koji < /usr/share/doc/koji*/docs/schema.sql' && touch /etc/koji.schema.done"
+  args:
+    creates: "/etc/koji.schema.done"
+  tags:
+    - koji-schema
+
