@@ -14,7 +14,7 @@
     - koji-package
 
 - name: Main | Import koji schema file'
-  shell: "su postgres -c 'psql koji < /usr/share/doc/koji*/docs/schema.sql' && touch /etc/koji.schema.done"
+  shell: "psql -U {{ koji_db_user }} {{ koji_dbname }} < $(rpm -qd koji | grep schema.sql) && touch /etc/koji.schema.done"
   args:
     creates: "/etc/koji.schema.done"
   tags:
