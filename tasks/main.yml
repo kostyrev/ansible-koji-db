@@ -2,7 +2,7 @@
 # tasks file for koji-db
 
 - name: Main | Remove nodocs from yum.conf
-  lineinfile: dest=/etc/yum.conf state=absent regexp="^tsflags = "
+  lineinfile: dest=/etc/yum.conf state=absent regexp="^tsflags="
   tags:
     - yum
     - koji-package
