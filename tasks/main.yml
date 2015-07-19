@@ -20,3 +20,14 @@
   tags:
     - koji-schema
 
+- name: Main | Put insert_kojiadmin.sql to /etc/koji.kojiadmin.sql
+  copy: src=insert_kojiadmin.sql dest=/etc/koji.kojiadmin.sql owner=root group=root mode=0644
+  tags:
+    - koji-schema
+
+- name: Main | Insert kojiadmin into users table
+  shell: "psql -U {{ koji_db_user }} {{ koji_dbname }} < /etc/koji.kojiadmin.sql && touch /etc/koji.kojiadmin.insert.done"
+  args:
+    creates: "/etc/koji.kojiadmin.insert.done"
+  tags:
+    - koji-schema
