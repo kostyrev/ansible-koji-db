@@ -1,7 +1,7 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Docs are coming soon for now just visit https://github.com/kostyrevaa/ansible-koji-infra
 
 Requirements
 ------------
