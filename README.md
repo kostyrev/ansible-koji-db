@@ -7,12 +7,12 @@ Role Name
 
 Roles are:
 
- * koji-db (https://galaxy.ansible.com/list#/roles/4459)
- * koji-ca (https://galaxy.ansible.com/list#/roles/4460)
- * koji-web (https://galaxy.ansible.com/list#/roles/4456)
- * koji-kojira (https://galaxy.ansible.com/list#/roles/4457)
- * koji-builder (https://galaxy.ansible.com/list#/roles/4461)
- * koji-hub (https://galaxy.ansible.com/list#/roles/4462)
+ * koji-db (https://galaxy.ansible.com/list#/roles/4459/)
+ * koji-ca (https://galaxy.ansible.com/list#/roles/4460/)
+ * koji-web (https://galaxy.ansible.com/list#/roles/4456/)
+ * koji-kojira (https://galaxy.ansible.com/list#/roles/4457/)
+ * koji-builder (https://galaxy.ansible.com/list#/roles/4461/)
+ * koji-hub (https://galaxy.ansible.com/list#/roles/4462/)
 
 For example of all-in-one setup go to https://github.com/kostyrevaa/ansible-koji-infra
 
