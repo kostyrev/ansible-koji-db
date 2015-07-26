@@ -1,38 +1,74 @@
 Role Name
 =========
 
-Docs are coming soon for now just visit https://github.com/kostyrevaa/ansible-koji-infra
+ This role installs and configures the database for koji.
+
+ This is one of the koji- roles which configures whole koji stack.
+
+Roles are:
+
+ * koji-db (https://galaxy.ansible.com/list#/roles/4459)
+ * koji-ca (https://galaxy.ansible.com/list#/roles/4460)
+ * koji-web (https://galaxy.ansible.com/list#/roles/4456)
+ * koji-kojira (https://galaxy.ansible.com/list#/roles/4457)
+ * koji-builder (https://galaxy.ansible.com/list#/roles/4461)
+ * koji-hub (https://galaxy.ansible.com/list#/roles/4462)
+
+For example of all-in-one setup go to https://github.com/kostyrevaa/ansible-koji-infra
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role doesn't not provision PostgreSQL setup nor does it creates postgresql users for you.
+
+You should use some other role for that. I use patrik.uytterhoeven.PostgreSQL-For-RHEL6x
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+There are some variables in the default/main.yml which can (or needs to) be changed/overriden:
+
+* `koji_dbname`: DB name for koji setup. Default is koji.
+
+* `koji_db_user`: DB's user that own's koji schema. Default is koji.
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: koji_db
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: patrik.uytterhoeven.PostgreSQL-For-RHEL6x
+           postgresql_unix_socket_directories:
+             - /tmp
+           postgresql_databases:
+             - name: koji
+           postgresql_users:
+             - name: koji
+                 pass: "{{ koji_db_pass }}"
+                 encrypted: no       # denotes if the password is already encrypted.
+           postgresql_user_privileges:
+             - name: koji         # user name
+               db: koji           # database
+               priv: "ALL"        # privilege string format: example: INSERT,UPDATE/table:SELECT/anothertable:ALL
+
+         - role: koji-db
+  
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+ Send your suggestions and pull requests to https://github.com/kostyrevaa/ansible-koji-db.
+ When send PR make sure your changes are backward-compatible.
+ Test your changes to role with https://github.com/kostyrevaa/ansible-koji-infra
