@@ -58,7 +58,7 @@ Including an example of how to use your role (for instance, with variables passe
                db: koji           # database
                priv: "ALL"        # privilege string format: example: INSERT,UPDATE/table:SELECT/anothertable:ALL
 
-         - role: koji-db
+         - role: kostyrevaa.koji-db
   
 
 License
