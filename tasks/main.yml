@@ -16,7 +16,7 @@
     - koji-db
 
 - name: Main | Import koji schema file'
-  shell: "psql -U {{ koji_db_user }} {{ koji_dbname }} < $(rpm -qd koji | grep schema.sql) && touch /etc/koji.schema.done"
+  shell: "psql -h 127.0.0.1 -U {{ koji_db_user }} {{ koji_dbname }} < $(rpm -qd koji | grep schema.sql) && touch /etc/koji.schema.done"
   args:
     creates: "/etc/koji.schema.done"
   tags:
@@ -30,7 +30,7 @@
     - koji-db
 
 - name: Main | Insert kojiadmin into users table
-  shell: "psql -U {{ koji_db_user }} {{ koji_dbname }} < /etc/koji.kojiadmin.sql && touch /etc/koji.kojiadmin.insert.done"
+  shell: "psql -h 127.0.0.1 -U {{ koji_db_user }} {{ koji_dbname }} < /etc/koji.kojiadmin.sql && touch /etc/koji.kojiadmin.insert.done"
   args:
     creates: "/etc/koji.kojiadmin.insert.done"
   tags:
