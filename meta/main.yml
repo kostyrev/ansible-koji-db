@@ -14,4 +14,4 @@ galaxy_info:
   - packaging
   - system
 dependencies:
-- { role: patrik.uytterhoeven.PostgreSQL-For-RHEL6x }
+  - patrik.uytterhoeven.PostgreSQL-For-RHEL6x
