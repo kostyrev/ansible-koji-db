@@ -2,14 +2,19 @@
 # tasks file for koji-db
 
 - name: Main | Remove nodocs from yum.conf
-  lineinfile: dest=/etc/yum.conf state=absent regexp="^tsflags="
+  lineinfile:
+    dest: /etc/yum.conf
+    state: absent
+    regexp: "^tsflags="
   tags:
-    - yum
+    - yum-nodocs
     - koji-package
     - koji-db
 
 - name: Main | Install koji package with schema
-  yum: name=koji state=present update_cache=yes
+  package:
+    name: koji
+    state: present
   tags:
     - yum
     - koji-package
@@ -23,8 +28,13 @@
     - koji-schema
     - koji-db
 
-- name: Main | Put insert_kojiadmin.sql to /etc/koji.kojiadmin.sql
-  copy: src=insert_kojiadmin.sql dest=/etc/koji.kojiadmin.sql owner=root group=root mode=0644
+- name: Main | Copy insert_kojiadmin.sql to /etc/koji.kojiadmin.sql
+  copy:
+    src: insert_kojiadmin.sql
+    dest: /etc/koji.kojiadmin.sql
+    owner: root
+    group: root
+    mode: 0644
   tags:
     - koji-schema
     - koji-db
