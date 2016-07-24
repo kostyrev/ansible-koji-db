@@ -11,15 +11,6 @@
     - koji-package
     - koji-db
 
-- name: Main | Install koji package with schema
-  package:
-    name: koji
-    state: present
-  tags:
-    - yum
-    - koji-package
-    - koji-db
-
 - name: Main | Import koji schema file'
   shell: "psql -h 127.0.0.1 -U {{ koji_db_user }} {{ koji_dbname }} < $(rpm -qd koji | grep schema.sql) && touch /etc/koji.schema.done"
   args:
