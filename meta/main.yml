@@ -13,5 +13,4 @@ galaxy_info:
   - development
   - packaging
   - system
-dependencies:
-  - patrik.uytterhoeven.PostgreSQL-For-RHEL6x
+dependencies: []
