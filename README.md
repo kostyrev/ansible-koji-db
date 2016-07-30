@@ -47,8 +47,6 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: koji_db
       roles:
          - role: patrik.uytterhoeven.PostgreSQL-For-RHEL6x
-           postgresql_unix_socket_directories:
-             - /tmp
            postgresql_databases:
              - name: koji
            postgresql_users:
