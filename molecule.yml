@@ -6,8 +6,9 @@ ansible:
 
 docker:
   containers:
-  - name: koji-db
-    ansible_groups:
-      - koji_db
-    image: centos
-    image_version: 6
+
+    - name: koji-db-centos6
+      ansible_groups:
+        - koji_db
+      image: centos
+      image_version: 6

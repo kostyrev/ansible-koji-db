@@ -29,4 +29,4 @@
           db: koji           # database
           priv: "ALL"        # privilege string format: example: INSERT,UPDATE/table:SELECT/anothertable:ALL    
 
-    - role: koji-db
+    - role: ansible-koji-db
