@@ -1,0 +1,9 @@
+- name: goozbach.EPEL
+  scm: git
+  src: https://github.com/goozbach-ansible/role-epel
+  version: master
+
+- name: koji-client
+  scm: git
+  src: https://github.com/kostyrevaa/ansible-koji-client.git
+  version: master

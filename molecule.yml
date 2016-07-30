@@ -1,0 +1,13 @@
+---
+ansible:
+  playbook: playbook.yml
+  retry_files_enabled: False
+  requirements_file: requirements.yml
+
+docker:
+  containers:
+  - name: koji-db
+    ansible_groups:
+      - koji_db
+    image: centos
+    image_version: 6

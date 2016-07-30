@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  vars:
+    epel_testing_enabled: 1
+  roles:
+    - { role: goozbach.EPEL, when: "ansible_distribution != 'Fedora'" }
+
+- hosts:
+    - koji_db
+    - koji_hub
+  vars:
+    koji_client_package_only: true  
+  roles:
+    - koji-client
+
+- hosts: koji_db
+  roles:
+    
+    - role: patrik.uytterhoeven.PostgreSQL-For-RHEL6x
+      postgresql_databases:
+        - name: koji
+      postgresql_users:
+        - name: koji
+          pass: KyFJ8Cm4b2khOMbC
+          encrypted: no       # denotes if the password is already encrypted.
+      postgresql_user_privileges:
+        - name: koji         # user name
+          db: koji           # database
+          priv: "ALL"        # privilege string format: example: INSERT,UPDATE/table:SELECT/anothertable:ALL    
+
+    - role: koji-db
