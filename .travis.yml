@@ -16,7 +16,6 @@ install:
 
 script:
 - molecule create
-- molecule syntax
 - molecule converge
 - molecule destroy
 
