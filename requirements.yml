@@ -1,3 +1,8 @@
+- name: patrik.uytterhoeven.PostgreSQL-For-RHEL6x
+  scm: git
+  src: https://github.com/Open-Future-Belgium/PostgreSQL.git
+  version: master
+
 - name: goozbach.EPEL
   scm: git
   src: https://github.com/goozbach-ansible/role-epel
