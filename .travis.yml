@@ -15,7 +15,10 @@ install:
 - pip install molecule
 
 script:
-- molecule test
+- molecule create
+- molecule syntax
+- molecule converge
+- molecule destroy
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
