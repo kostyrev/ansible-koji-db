@@ -1,6 +1,10 @@
 koji-db
 =========
 
+Build Status:
+
+[![Build Status](https://travis-ci.org/kostyrevaa/ansible-koji-db.svg?branch=master)](https://travis-ci.org/kostyrevaa/ansible-koji-db)
+
 This role configures the database for koji.
 
 This is one of the koji- roles which configures the whole koji stack.
