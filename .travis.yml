@@ -14,8 +14,8 @@ install:
 - pip install molecule
 
 script:
-- molecule create --debug
-- molecule converge --debug
+- molecule create
+- molecule converge
 - molecule destroy
 
 notifications:
