@@ -1,8 +1,15 @@
 ---
 ansible:
   playbook: playbook.yml
-  retry_files_enabled: False
   requirements_file: requirements.yml
+
+molecule:
+  test:
+    sequence:
+      - destroy
+      - create
+      - converge
+      - destroy
 
 docker:
   containers:
