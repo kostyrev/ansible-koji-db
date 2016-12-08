@@ -1,15 +1,18 @@
 ---
-ansible:
-  playbook: playbook.yml
+dependency:
+  name: galaxy
   requirements_file: requirements.yml
+  options:
+      ignore-certs: True
+      ignore-errors: True
 
 molecule:
   test:
     sequence:
       - destroy
+      - syntax
       - create
       - converge
-      - destroy
 
 docker:
   containers:
